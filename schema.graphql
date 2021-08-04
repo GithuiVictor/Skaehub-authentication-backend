@@ -1,0 +1,34 @@
+schema {
+    query: Query
+    mutation: Mutation 
+}
+
+type User {
+    id: ID!
+    name: String!
+    email: String!
+    phone: String
+    gender: String
+    occupation: String
+    address: String
+    password: String!
+    img: String
+    verified: Boolean!
+}
+
+type UserResult {
+    success: Boolean!
+    errors: [String]
+    token: String
+    user: User
+}
+
+type Query {
+    user(email: String!, password: String!): UserResult!
+}
+
+type Mutation {
+    createUser(name: String!, email: String!, password: String!): UserResult!
+    updateUser(userId: String!, name: String!, email: String!, phone: String, gender: String, occupation: String, address: String, img: String): UserResult!
+    updatePassword(userId: String!, password: String!): UserResult!
+}
